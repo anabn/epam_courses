@@ -1,2 +1,2 @@
-# spam_courses
+# epam_courses
 java core practice
