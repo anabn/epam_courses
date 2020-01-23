@@ -27,29 +27,24 @@ public class Main {
        return arraySum;
     }
 
-    public static int[] takePositiveArray(int[] array){
+    public static int[][] takePositiveArray(int[] array){
         int k = 0;
+        int negK = 0;
         int sizeOfArray = array.length;
         int[] positiveArray = new int[sizeOfArray];
+        int[] negativeArray = new int[sizeOfArray];
         for (int i = 0; i < sizeOfArray; i++) {
             if (array[i] >= 0) {
                 positiveArray[k++] = array[i];
+            } else {
+                negativeArray[negK++] = array[i];
             }
         }
-        return Arrays.copyOfRange(positiveArray, 0, k);
+        int[][] sum = {Arrays.copyOfRange(positiveArray, 0, k),
+                Arrays.copyOfRange(negativeArray, 0, negK)};
+        return sum;
     }
 
-    public static int[] takeNegativeArray(int[] array){
-        int k = 0;
-        int sizeOfArray = array.length;
-        int[] negativeArray = new int[sizeOfArray];
-        for (int i = 0; i < sizeOfArray; i++){
-            if (array[i] < 0) {
-                negativeArray[k++] = array[i];
-            }
-        }
-        return Arrays.copyOfRange(negativeArray, 0, k);
-    }
     public static void main(String[] args) {
         int setSize = 10;
 
@@ -83,8 +78,7 @@ public class Main {
       // ***** task 2 ******* //
         int[] arrayForDivide = randomArray(setSize);
 
-        int[] posArray = takePositiveArray(arrayForDivide);
-        int[] negArray = takeNegativeArray(arrayForDivide);
+        int[][] divArray = takePositiveArray(arrayForDivide);
 
         System.out.print("\n < ********* task 2 ********* >");
         System.out.print("\nGeneral array for divide : \n");
@@ -93,13 +87,11 @@ public class Main {
         }
 
         System.out.print("\nTaken array with positive value from general array : \n");
-        for (int element: posArray) {
-            System.out.print(element + " ");
-        }
-
-        System.out.print("\nTaken array with negative value from general array : \n");
-        for (int element: negArray) {
-            System.out.print(element + " ");
+        for (int[] element: divArray) {
+            for (int el: element) {
+                System.out.print(el + " ");
+            }
+            System.out.println();
         }
     }
 }
