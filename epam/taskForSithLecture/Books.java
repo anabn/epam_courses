@@ -1,5 +1,6 @@
 package epam.taskForSithLecture;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /*
@@ -11,7 +12,7 @@ import java.util.Arrays;
     книг, изданных после указанного года.
  */
 
-public class Books extends Validator {
+public class Books extends Validator implements Serializable {
     private int arraySize;
     private Book[] bookArray = new Book[arraySize];
 
