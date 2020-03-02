@@ -2,6 +2,7 @@ package epam.taskForSithLecture;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /*
     опишите класс Books, который будет содержать массив объектов (поле)
@@ -91,19 +92,40 @@ public class Books extends Validator implements Serializable {
 
     public Book[] sortedArrayByOrder(){
         Book[] reserveArray = Arrays.copyOf(bookArray, arraySize);
-        Arrays.sort(reserveArray, new MyComparatorByAuthor());
+        Arrays.sort(reserveArray, new Comparator(){
+            @Override
+            public int compare(Object o1, Object o2) {
+                String author1 = ((Book)o1).getAuthor();
+                String author2 = ((Book)o2).getAuthor();
+                return author1.compareTo(author2);
+            }
+        });
         return reserveArray;
     }
 
     public Book[] sortedArrayByPublished(){
         Book[] reserveArray = Arrays.copyOf(bookArray, arraySize);
-        Arrays.sort(reserveArray, new MyComparatorByPublished());
+        Arrays.sort(reserveArray, new Comparator(){
+                @Override
+                public int compare(Object o1, Object o2) {
+                String pub1 = ((Book)o1).getPublished();
+                String pub2 = ((Book)o2).getPublished();
+            return pub1.compareTo(pub2);
+            }
+        });
         return reserveArray;
     }
 
     public Book[] sortedArrayByPriceReverce(){
         Book[] reserveArray = Arrays.copyOf(bookArray, arraySize);
-        Arrays.sort(reserveArray, new MyComparatorByPrice());
+        Arrays.sort(reserveArray, new Comparator(){
+            @Override
+            public int compare(Object o1, Object o2) {
+                Double pub1 = ((Book)o1).getPrice();
+                Double pub2 = ((Book)o2).getPrice();
+                return pub2.compareTo(pub1);
+            }
+        });
         return reserveArray;
     }
 }
